@@ -1,7 +1,8 @@
-wp_weekposts_widget
-===================
+# wp_weekposts_widget
 
 A simple widget to show the current week or the last week (optionable) posts. Needed that for one of my project so here it is.
+
+# Why?
 
 I haven't found a really simple widget to show the current week's posts or the last week's posts. There are many plugins about showing
 the a certain number of posts with possibility to skip some, but it's always working on the number of posts, not on the real date
@@ -9,3 +10,10 @@ of the posts.
 
 So this widget allows you to do that, to show in your sidebar the current week (if it's thursday it will only show the posts from
 monday to thursday) and/or last week's posts (same, from monday to sunday).
+
+# Options
+
+There's no much options in the plugin. You can just choose "This week" or "Last week". Because this is exactly what I need, and it's my first
+widget, and building the widget was not my goal, I didn't bother allowing other options. Now thinking about it's probably better to replace
+the 2 dropdown options for an input so that it's possible to go as many weeks back as needed. Maybe I'll change that one day, but feel free to
+fork and make the change if you wish. I can pull merge.
