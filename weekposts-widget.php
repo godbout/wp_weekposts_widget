@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Weekpost Plugin
- * Plugin URI: https://github.com/godbout
+ * Plugin URI: https://github.com/godbout/wp_weekposts_widget/blob/master/weekposts-widget.php
  * Description: Shows all the current week's posts, or all of last week's posts
  * Version: 1.0
  * Author: Guill Lo
