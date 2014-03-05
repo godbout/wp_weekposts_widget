@@ -19,9 +19,10 @@ class WeekpostWidget extends WP_Widget
  
     function form($instance)
     {
-        $instance = wp_parse_args( (array) $instance, array( 'title' => '', 'type' => '' ) );
+        $instance = wp_parse_args( (array) $instance, array( 'title' => '', 'type' => '', 'show_date' ) );
         $title = $instance['title'];
         $type = $instance['type'];
+        $show_date = $instance['show_date'];
 ?>
     <p>
         <label for="<?php echo $this->get_field_id('title'); ?>"></label>
@@ -38,6 +39,10 @@ class WeekpostWidget extends WP_Widget
 ?>
         </select>
     </p>
+    <p>
+        <label for="<?php echo $this->get_field_id('show_date'); ?>"></label>
+        Show date: <input id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" type="checkbox" value="1" <?php checked( '1', $show_date ); ?> />
+    </p>
 <?php
     }
  
@@ -46,6 +51,8 @@ class WeekpostWidget extends WP_Widget
         $instance = $old_instance;
         $instance['title'] = $new_instance['title'];
         $instance['type'] = $new_instance['type'];
+        $instance['show_date'] = $new_instance['show_date'];
+        
         return $instance;
     }
  
@@ -74,15 +81,19 @@ class WeekpostWidget extends WP_Widget
             while ($the_query->have_posts()) {
                 $the_query->the_post();
 
-                if (mysql2date('d m o', get_the_date()) === date('d m o')) {
-                    $date = 'Today';
-                } elseif (mysql2date('d m o', get_the_date()) === date('d m o', strtotime('-1 days'))) {
-                    $date = 'Yesterday';
-                } else {
-                    $date = mysql2date('l', get_the_date());
+                if ($instance['show_date'] === '1') {
+                    if (mysql2date('d m o', get_the_date()) === date('d m o')) {
+                        $date = 'Today';
+                    } elseif (mysql2date('d m o', get_the_date()) === date('d m o', strtotime('-1 days'))) {
+                        $date = 'Yesterday';
+                    } else {
+                        $date = mysql2date('l', get_the_date());
+                    }
+
+                    $date = '[' .$date . '] ';
                 }
 
-                echo '<li><a href="' .get_permalink() .'">[' .$date . '] ' .get_the_title() .'</a></li>';
+                echo '<li><a href="' .get_permalink() .'">' .$date .get_the_title() .'</a></li>';
             }
             echo '</ul>';
         } else {
