@@ -73,7 +73,16 @@ class WeekpostWidget extends WP_Widget
             echo '<ul>';
             while ($the_query->have_posts()) {
                 $the_query->the_post();
-                echo '<li><a href="' .get_permalink() .'">' .get_the_title() .'</a></li>';
+
+                if (mysql2date('d m o', get_the_date()) === date('d m o')) {
+                    $date = 'Today';
+                } elseif (mysql2date('d m o', get_the_date()) === date('d m o', strtotime('-1 days'))) {
+                    $date = 'Yesterday';
+                } else {
+                    $date = mysql2date('l', get_the_date());
+                }
+
+                echo '<li><a href="' .get_permalink() .'">[' .$date . '] ' .get_the_title() .'</a></li>';
             }
             echo '</ul>';
         } else {
