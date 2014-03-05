@@ -10,5 +10,11 @@ So this widget allows you to do that, to show in your sidebar the current week (
 
 # Options
 
-There's no much options in the plugin. You can just choose "This week" or "Last week". Because this is exactly what I need, and it's my first widget, and building the widget was not my primary goal, so I didn't bother allowing other options. Now thinking about it's probably better to replace the 2 dropdown options for an input so that it's possible to go as many weeks back as needed. Maybe I'll change that one day, but feel free to
-fork and make the change if you wish. I can pull merge.
+There's no much options in the plugin. You can just choose "This week" or "Last week", and to show or not the date in front of the post title. Because this is exactly what I need, and it's my first widget, and building the widget was not my primary goal, so I didn't bother allowing other options.
+
+# Possible improvements
+
+* Instead of 2 dropdown for this week and last week, replace by an input so that it's possible to go as many weeks back as needed.
+* Make the date format optionable. For now it's the name of the day (e.g. Monday) or Today, or Yesterday.
+
+Maybe I'll change that one day, but feel free tofork and make the changes if you wish. I can pull merge.
