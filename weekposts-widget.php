@@ -76,8 +76,8 @@ class WeekpostWidget extends WP_Widget
         $year = date('Y');
         $the_query = new WP_Query( 'year=' . $year . '&w=' . $week );
 
+        echo '<ul>';
         if ($the_query->have_posts()) {
-            echo '<ul>';
             while ($the_query->have_posts()) {
                 $the_query->the_post();
 
@@ -95,10 +95,10 @@ class WeekpostWidget extends WP_Widget
 
                 echo '<li><a href="' .get_permalink() .'">' .$date .get_the_title() .'</a></li>';
             }
-            echo '</ul>';
         } else {
             echo '<a href="https://twitter.com/dailycuckoo"</a>Nothing yet here, so go ask your question @DailyCuckoo!';
         }
+        echo '</ul>';
         wp_reset_query();
  
         echo $after_widget;
