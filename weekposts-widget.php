@@ -11,12 +11,12 @@
 
 class WeekpostWidget extends WP_Widget
 {
-    function WeekpostWidget()
+    function __construct()
     {
         $widget_ops = array('classname' => 'WeekpostWidget', 'description' => 'Displays all of the current week posts, or last week posts' );
-        $this->WP_Widget('WeekpostWidget', 'Weekpost', $widget_ops);
+        parent::__construct('WeekpostWidget', 'Weekpost', $widget_ops);
     }
- 
+
     function form($instance)
     {
         $instance = wp_parse_args( (array) $instance, array( 'title' => '', 'type' => '', 'show_date' ) );
@@ -45,34 +45,34 @@ class WeekpostWidget extends WP_Widget
     </p>
 <?php
     }
- 
+
     function update($new_instance, $old_instance)
     {
         $instance = $old_instance;
         $instance['title'] = $new_instance['title'];
         $instance['type'] = $new_instance['type'];
         $instance['show_date'] = $new_instance['show_date'];
-        
+
         return $instance;
     }
- 
+
     function widget($args, $instance)
     {
         extract($args, EXTR_SKIP);
- 
+
         echo $before_widget;
         $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
- 
+
         if (!empty($title)) {
             echo $before_title . $title . $after_title;;
         }
- 
+
         if ($instance['type'] === 'This week') {
             $week = date('W');
         } else {
             $week = date('W') - 1;
         }
-        
+
         $year = date('Y');
         $the_query = new WP_Query( 'year=' . $year . '&w=' . $week );
 
@@ -100,10 +100,14 @@ class WeekpostWidget extends WP_Widget
         }
         echo '</ul>';
         wp_reset_query();
- 
+
         echo $after_widget;
     }
 }
 
-add_action( 'widgets_init', create_function('', 'return register_widget("WeekpostWidget");') );
+add_action(
+    'widgets_init', function () {
+        register_widget('WeekpostWidget');
+    }
+);
 ?>
