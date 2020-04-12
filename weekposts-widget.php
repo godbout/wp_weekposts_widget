@@ -96,7 +96,7 @@ class WeekpostWidget extends WP_Widget
                 echo '<li><a href="' .get_permalink() .'">' .$date .get_the_title() .'</a></li>';
             }
         } else {
-            echo '<a href="https://twitter.com/dailycuckoo"</a>Nothing yet here, so go ask your question @DailyCuckoo!';
+            echo '<li><a href="https://twitter.com/dailycuckoo">Nothing yet here, so go ask your question @DailyCuckoo!</a></li>';
         }
         echo '</ul>';
         wp_reset_query();
